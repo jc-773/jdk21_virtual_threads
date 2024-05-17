@@ -1,0 +1,10 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.configuration.runtimes": [
+        {
+            "default": true,
+            "name": "JavaSE-21",
+            "path": "/Users/jonathanclark/Downloads/jdk/zulu21.32.17-ca-jdk21.0.2-macosx_aarch64/zulu-21.jdk/Contents/Home",
+        }
+    ]
+}
