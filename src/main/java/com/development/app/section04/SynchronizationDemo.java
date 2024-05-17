@@ -1,11 +1,14 @@
 package com.development.app.section04;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.development.AppUtils;
 
 
 
@@ -14,7 +17,8 @@ public class SynchronizationDemo {
    private static final List<Integer> list = new ArrayList<>();
 
    public static void main(String[] args) {
-        demo(Thread.ofPlatform());
+        demo(Thread.ofVirtual());
+        AppUtils.sleep(Duration.ofSeconds(2));
         log.info("List size: {}", list.size());
    }
 
