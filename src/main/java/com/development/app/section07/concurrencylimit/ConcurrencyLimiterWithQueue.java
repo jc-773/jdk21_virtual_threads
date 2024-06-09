@@ -10,7 +10,7 @@ import java.util.concurrent.Semaphore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ConcurrencyLimiterWithQueue {
+public class ConcurrencyLimiterWithQueue implements AutoCloseable {
      private static final Logger log = LoggerFactory.getLogger(ConcurrencyLimiterWithQueue.class);
 
     private static ExecutorService executor;
