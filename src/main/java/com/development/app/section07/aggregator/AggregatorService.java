@@ -15,16 +15,20 @@ public class AggregatorService {
     }
 
     public ProductDTO getProductDto(int id) throws ExecutionException, InterruptedException {
-        //a thread will come in and make 2 separate calls to get the product and the rating data
+        //a thread will come in and make 2 separate calls to get the product and the rating data respectively
 
+        // One task gets it's own thread 
         Future<String> product = executor.submit(() -> 
             Client.getProduct(id)
         );
 
+        //Another task gets it's own thread
         Future<String> rating = executor.submit(() -> 
             Client.getRating(id)
         );
 
         return new ProductDTO(id, product.get(), rating.get());
     }
+
+    
 }
