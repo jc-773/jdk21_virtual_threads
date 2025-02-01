@@ -1,6 +1,7 @@
 package com.development.app.section07;
 
 import java.time.Duration;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.slf4j.Logger;
@@ -16,7 +17,6 @@ public class AutoCloseable {
         // executor.submit(() -> someTask());
         // log.info("submitted by executor");
         // executor.shutdown();
-
         //using try-with-resources automatically calls the executor.shutdown method
         try(var executor = Executors.newSingleThreadExecutor()) {
             executor.submit(() -> someTask());
