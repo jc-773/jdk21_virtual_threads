@@ -19,6 +19,9 @@ public class Runner {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         process = new ProcessFetch(3);
         //log.info("Time for blocking sequential task: {}", AppUtils.timer(()  -> executeBlockingTask()));
+        
+        //virtual threads are daemon threads, so when the main thread is finished executing, the application will end. Regardless if supplyAsync has a value or not.
+        //You must use the .join() method to hold the main thread to wait for the result of supplyAsyncronousFetch()
         log.info("Time for non-blocking concurrent task: {}", AppUtils.timer(()  -> log.info("Result: {}",supplyAsynchronousFetch().join())));
     }
 
