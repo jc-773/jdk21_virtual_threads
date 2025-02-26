@@ -21,9 +21,7 @@ public class Lec08ThenCombine {
             var frontier = getFrontierFair(executor);
             var bestDeal = delta.thenCombine(frontier, (a,b) -> a.amount < b.amount ? a : b )
             .thenApply(airfare -> new Airline(airfare.airline(), (int) (airfare.amount() * .9))).join();
-
             log.info("Best deal: {}", bestDeal);
-            
         }
     }
 

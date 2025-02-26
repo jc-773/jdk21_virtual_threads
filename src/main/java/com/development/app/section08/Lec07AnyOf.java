@@ -18,7 +18,6 @@ public class Lec07AnyOf {
         try(var executor = Executors.newVirtualThreadPerTaskExecutor()) {
             var delta = getDeltaFair(executor);
             var frontier = getFrontierFair(executor);
-
             log.info("Price: {}", CompletableFuture.anyOf(delta, frontier).join());
         }
     }
