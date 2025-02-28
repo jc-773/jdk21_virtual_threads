@@ -8,26 +8,27 @@ import org.slf4j.LoggerFactory;
 
 import com.development.AppUtils;
 
-public class Lec02ThreadLocal {
-    private static final Logger log = LoggerFactory.getLogger(Lec02ThreadLocal.class);
-    private static final ThreadLocal<String> SESSION_TOKEN = new InheritableThreadLocal<>();
+
+public class Lec03ScopedValues {
+    private static final Logger log = LoggerFactory.getLogger(Lec03ScopedValues.class);
+    private static final ScopedValue<String> SESSION_TOKEN = ScopedValue.newInstance();
 
     public static void main(String[] args) {
         Thread.ofVirtual().name("1").start(() -> processIncomingRequest());
         Thread.ofVirtual().name("2").start(() -> processIncomingRequest());
-
-        AppUtils.sleep(Duration.ofSeconds(3));
+        AppUtils.sleep(Duration.ofSeconds(2));
     }
 
     private static void processIncomingRequest() {
-        generateToken();
-        controller();
+        var token = generateToken();
+        
+        ScopedValue.runWhere(SESSION_TOKEN, token, () -> controller());
     }
 
-    private static void generateToken() {
+    private static String generateToken() {
         var token = UUID.randomUUID().toString();
         log.info("Token--{}", token);
-        SESSION_TOKEN.set(token);
+        return token;
     }
 
     private static void controller() {

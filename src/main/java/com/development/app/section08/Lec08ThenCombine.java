@@ -25,7 +25,7 @@ public class Lec08ThenCombine {
         }
     }
 
-     private static CompletableFuture <Airline> getDeltaFair(Executor executor) {
+    private static CompletableFuture <Airline> getDeltaFair(Executor executor) {
         return CompletableFuture.supplyAsync(() ->  {
             var random = ThreadLocalRandom.current().nextInt(0,500);
             AppUtils.sleep(Duration.ofMillis(225));
